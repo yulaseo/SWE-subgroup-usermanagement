@@ -5,4 +5,6 @@ from . import views
 urlpatterns = [
     path('search', views.search_guest, name='search_guest'),
     path('detail/<userid>', views.guest_detail, name='guest_detail'),
+    path('add-guest', views.add_guest, name='add_guest'),
+    path('add-guest/addAction', views.add_guest_action, name='add_guest_action'),
 ]

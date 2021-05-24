@@ -30,5 +30,12 @@ def guest_detail(request, userid):
         'name': guest.name,
         'id': guest.userid
     }
-
     return render(request, 'guest/guest_detail.html', context)
+
+
+def add_guest(request):
+    return render(request, 'guest/add_guest.html')
+
+
+def add_guest_action(request):
+    pass
