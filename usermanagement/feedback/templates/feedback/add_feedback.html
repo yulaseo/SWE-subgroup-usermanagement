@@ -50,13 +50,28 @@
     padding: 0 10px;
     float: right;
   }
+
+  #feedback-content {
+    width: 400px;
+    height: 300px;
+  }
 </style>
 <body>
   <div class="container">
-    <h2>피드백을 추가하세요.</h2><br>
+    <h2>피드백을 전송하세요.</h2><br>
     <div class="form-container">
       <form action="./addAction" method="POST">
-        
+        <div>
+          <span class="form-title">Title: </span>
+          <input class="form-input" name="text" type="text"/>
+        </div><br><br>
+        <div>
+          <span class="form-title">Content: </span>
+          <textarea id="feedback-content" name="content"></textarea>
+        </div><br><br><br><br>
+        <div style="text-align: center;">
+          <button type="submit">전송</button>
+        </div>
       </form>
     </div>
   </div>
