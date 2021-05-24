@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('give', views.give_feedback, name='give_feedback'),
-    path('reply', views.reply_feedback, name='reply_feedback'),
+    path('list', views.feedback_list, name='feedback_list'),
+    path('detail/<id>', views.feedback_detail, name='feedback_detail'),
 ]

@@ -5,8 +5,8 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world. You're at the feedback index.")
 
-def give_feedback(request):
-    return render(request, 'feedback/give_feedback.html')
+def feedback_list(request):
+    return render(request, 'feedback/feedback_list.html')
 
-def reply_feedback(request):
-    return render(request, 'feedback/reply_feedback.html')
+def feedback_detail(request):
+    return render(request, 'feedback/feedback_detail.html')
