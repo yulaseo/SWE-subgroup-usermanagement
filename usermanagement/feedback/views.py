@@ -2,11 +2,19 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the feedback index.")
-
 def feedback_list(request):
-    return render(request, 'feedback/feedback_list.html')
+    feedbacks = Feedback.objects.all()
+    context = {
+            'feedbacks': feedbacks
+        }
 
-def feedback_detail(request):
-    return render(request, 'feedback/feedback_detail.html')
+    return render(request, 'feedback/feedback_list.html', context)
+
+
+def feedback_detail(request, id):
+    feedback = Feedback.objects.get(id = id)
+    context = {
+        'feedback': feedback
+    }
+
+    return render(request, 'feedback/feedback_detail.html', context)

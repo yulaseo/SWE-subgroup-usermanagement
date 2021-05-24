@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RestrictForm
-
-
-def index(request):
-    return HttpResponse("Hello")
+from .models import Guest, Book
+from django.db.models import Q
 
 
 def logout(request):
@@ -19,7 +16,8 @@ def search_guest(request):
     if searchParam:
         guestList = guests.filter(Q(name__icontains=searchParam) | Q(userid__icontains=searchParam))
         context = {
-            'guests': guestList
+            'guests': guestList,
+            'searchParam': searchParam
         }
         return render(request, 'guest/search_guest.html', context)
 
@@ -29,7 +27,8 @@ def search_guest(request):
 def guest_detail(request, userid):
     guest = Guest.objects.get(userid = userid)
     context = {
-        'guest': guest
+        'name': guest.name,
+        'id': guest.userid
     }
 
     return render(request, 'guest/guest_detail.html', context)
