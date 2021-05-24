@@ -4,6 +4,9 @@ from django.db import models
 class Guest(models.Model):
     name = models.CharField(max_length=50)
     userid = models.IntegerField()
+    password = models.TextField()
+    email = models.TextField()
+    phone_number = models.IntegerField()
     restricted_status = models.BooleanField(default=False)
     restricted_period = models.IntegerField(default=0)
 
