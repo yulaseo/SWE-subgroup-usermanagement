@@ -38,6 +38,11 @@
     height: 1.6em;
   }
 
+  .form-radio {
+    width: 1.4em;
+    height: 1.4em;
+  }
+
   .idgen-btn {
     height: 1.6em;
     line-height: 1.6em;
@@ -59,11 +64,24 @@
 <body>
   <div class="container">
     <h2>피드백을 전송하세요.</h2><br>
+    {% if messages %}
+      {% for message in messages %}
+        <script>alert("{{ message }}")</script>
+      {% endfor %}
+    {% endif %}
     <div class="form-container">
       <form action="./addAction" method="POST">
+        {% csrf_token %}
         <div>
           <span class="form-title">Title: </span>
-          <input class="form-input" name="text" type="text"/>
+          <input class="form-input" name="title" type="text"/>
+        </div><br><br>
+        <div>
+          <span class="form-title">Anonymity </span>
+          <input class="form-radio" type="radio" name="anonymity" value="open" checked/>
+          <label>Open</label>
+          <input class="form-radio" type="radio" name="anonymity" value="close"/>
+          <label>Close</label>
         </div><br><br>
         <div>
           <span class="form-title">Content: </span>
@@ -78,7 +96,17 @@
 </body>
 <script>
   const idGenerate = () => {
-    
+    let returnValue = false;
+        $.ajax({
+            url: './add-feedback/id-gen',
+            type: 'GET',
+            async: false,
+            data: {},
+            success: function(data) {
+                returnValue = data;
+            }
+        })
+        document.querySelector('#idInput').value = returnValue;
   }
 </script>
 </html>
