@@ -18,3 +18,11 @@ def feedback_detail(request, id):
     }
 
     return render(request, 'feedback/feedback_detail.html', context)
+
+
+def add_feedback(request):
+    return render(request, 'feedback/add_feedback.html')
+
+
+def add_feedback_action(request):
+    pass
