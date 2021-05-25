@@ -1,11 +1,13 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import Guest, Book
+from .models import Guest
+from django.db.models import Q
 from .IdGen import IdGen
 from .NewComerChecker import NewComerChecker
 from .guestDAO import GuestDAO
 from django.contrib import messages
+
 
 def logout(request):
     auth.logout(request)
