@@ -4,7 +4,6 @@ from .models import Guest, Book
 from .IdGen import IdGen
 from .NewComerChecker import NewComerChecker
 
-
 def logout(request):
     auth.logout(request)
     return redirect('login')
