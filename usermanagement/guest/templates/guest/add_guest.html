@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>게스트 추가</title>
 </head>
 <style>
@@ -58,8 +59,12 @@
       <form action="./addAction" method="POST">
         <div>
           <span class="form-title">ID: </span>
-          <input class="form-input" type="text" name="id" disabled=true />
+          <input class="form-input" id="idInput" type="text" name="id" disabled=true />
           <div class="idgen-btn" onclick="idGenerate()">ID Generate</div>
+        </div><br><br>
+        <div>
+          <span class="form-title">Name: </span>
+          <input class="form-input" type="text" name="name" />
         </div><br><br>
         <div>
           <span class="form-title">PW: </span>
@@ -86,7 +91,18 @@
 </body>
 <script>
   const idGenerate = () => {
-    
+    let returnValue = false;
+        $.ajax({
+            url: './add-guest/id-gen',
+            type: 'GET',
+            async: false,
+            data: {},
+            success: function(data) {
+                returnValue = data
+                console.log("success", data);
+            }
+        })
+        document.querySelector('#idInput').value = returnValue;
   }
 </script>
 </html>

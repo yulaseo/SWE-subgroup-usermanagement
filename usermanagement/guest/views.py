@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Guest, Book
-from django.db.models import Q
+from .IdGen import IdGen
+from .NewComerChecker import NewComerChecker
 
 
 def logout(request):
@@ -38,4 +39,10 @@ def add_guest(request):
 
 
 def add_guest_action(request):
-    pass
+    if request.method != "POST" or NewComerChecker.check():
+        return redirect('add_guest')
+    
+
+def id_generate(request):
+    new_id = IdGen.generateID()
+    return HttpResponse(new_id)
