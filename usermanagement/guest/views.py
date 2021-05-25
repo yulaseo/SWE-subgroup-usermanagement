@@ -1,9 +1,11 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Guest, Book
 from .IdGen import IdGen
 from .NewComerChecker import NewComerChecker
-
+from .guestDAO import GuestDAO
+from django.contrib import messages
 
 def logout(request):
     auth.logout(request)
@@ -36,13 +38,16 @@ def guest_detail(request, userid):
 
 def add_guest(request):
     return render(request, 'guest/add_guest.html')
-
-
-def add_guest_action(request):
-    if request.method != "POST" or not NewComerChecker.check(request.POST):
-        return redirect('add_guest')
     
 
 def id_generate(request):
     new_id = IdGen.generateID()
     return HttpResponse(new_id)
+
+
+def add_guest_action(request):
+    if request.method != "POST" or not NewComerChecker.check(request.POST):
+        return redirect('add_guest')
+    GuestDAO.addUser(IdGen.generateID(), request.POST)
+    messages.info(request, "The new guest has been successfully registered.")
+    return HttpResponseRedirect('add-guest')
