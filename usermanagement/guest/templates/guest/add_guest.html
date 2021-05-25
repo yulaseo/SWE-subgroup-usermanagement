@@ -55,6 +55,11 @@
 <body>
   <div class="container">
     <h2>게스트를 추가하세요.</h2><br>
+    {% if messages %}
+      {% for message in messages %}
+        <script>alert("{{ message }}")</script>
+      {% endfor %}
+    {% endif %}
     <div class="form-container">
       <form action="./addAction" method="POST">
         {% csrf_token %}
