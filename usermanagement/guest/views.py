@@ -39,7 +39,7 @@ def add_guest(request):
 
 
 def add_guest_action(request):
-    if request.method != "POST" or NewComerChecker.check():
+    if request.method != "POST" or not NewComerChecker.check(request.POST):
         return redirect('add_guest')
     
 
