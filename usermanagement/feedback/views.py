@@ -4,6 +4,7 @@ from .IdGen import IdGen
 from .feedbackDAO import FeedbackDAO
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
+from .models import Feedback
 
 
 def feedback_list(request):
