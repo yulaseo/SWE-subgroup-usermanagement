@@ -3,7 +3,7 @@ from django.db import models
 # 다른 서브그룹이랑 맞춰야함
 class Guest(models.Model):
     name = models.CharField(max_length=50)
-    userid = models.IntegerField()
+    userid = models.AutoField(primary_key=True)
     password = models.TextField()
     email = models.TextField()
     phone_number = models.IntegerField()
