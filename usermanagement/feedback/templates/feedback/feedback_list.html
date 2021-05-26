@@ -9,7 +9,7 @@
                 <div class="col-md-8">
 
                     {% for feedback in feedbacks %}
-                        <a href="{% url 'feedback_detail' id=feedback.feedbackid %}">{{ feedback.title }}</a><span>{{ feedback.create_date }}</span>
+                        <a href="{% url 'feedback_detail' feedbackid=feedback.feedbackid %}">{{ feedback.title }}</a><span>{{ feedback.create_date }}</span>
                         <br>
                     {% endfor %}
 

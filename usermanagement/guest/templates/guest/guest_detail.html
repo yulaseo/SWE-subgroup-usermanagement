@@ -1,17 +1,15 @@
 {% extends 'guest/base.html' %}
 
 {% block content %}
-    <div class="page-header">
-            <h1><center>Guest Detail</center></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
+    <div class="page-subheader">
+        <h1>Guest Detail</h1>
+    </div>
+    <div class="content-container">
+        <div class="detail">
 
                     <h1>{{ guest.name }}</h1>
                     <h2>{{ guest.userid }}<h2>
 
-                </div>
-            </div>
-        </div>     
+        </div>
+    </div>
 {% endblock %}

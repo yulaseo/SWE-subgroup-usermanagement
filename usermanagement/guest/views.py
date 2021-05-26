@@ -48,4 +48,4 @@ def add_guest_action(request):
         return redirect('add_guest')
     GuestDAO.addUser(IdGen.generateID(), request.POST)
     messages.info(request, "The new guest has been successfully registered.")
-    return HttpResponseRedirect('add-guest')
+    return HttpResponseRedirect('add')

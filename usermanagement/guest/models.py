@@ -10,3 +10,6 @@ class Guest(models.Model):
     profile_image = models.ImageField(upload_to='images/', blank=True, null=True)
     restricted_status = models.BooleanField(default=False)
     restricted_period = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

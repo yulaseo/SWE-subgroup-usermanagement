@@ -16,8 +16,8 @@ def feedback_list(request):
     return render(request, 'feedback/feedback_list.html', context)
 
 
-def feedback_detail(request, id):
-    feedback = FeedbackDAO.getFeedback(id)
+def feedback_detail(request, feedbackid):
+    feedback = FeedbackDAO.getFeedback(feedbackid)
     context = {
         'feedback': feedback
     }
@@ -43,4 +43,4 @@ def add_feedback_action(request):
         return redirect('add_feedback')
     FeedbackDAO.save_feedback(request.POST['anonymity'], get_user_id(request), request.POST['title'], request.POST['content'], IdGen.generateID())
     messages.info(request, "The new feedback has been successfully sent.")
-    return HttpResponseRedirect('add-feedback')
+    return HttpResponseRedirect('add')
