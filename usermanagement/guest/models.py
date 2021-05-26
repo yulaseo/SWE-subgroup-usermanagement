@@ -1,6 +1,6 @@
 from django.db import models
 
-# 다른 서브그룹이랑 맞춰야함
+
 class Guest(models.Model):
     userid = models.IntegerField(null=False, primary_key=True)
     name = models.CharField(max_length=50, null=False)

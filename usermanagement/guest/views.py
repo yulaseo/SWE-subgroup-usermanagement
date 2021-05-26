@@ -2,7 +2,6 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Guest
-from django.db.models import Q
 from .IdGen import IdGen
 from .NewComerChecker import NewComerChecker
 from .guestDAO import GuestDAO
@@ -15,11 +14,9 @@ def logout(request):
 
 
 def search_guest(request):
-    guests = Guest.objects.all()
-
     searchParam = request.POST.get('searchParam', '')
     if searchParam:
-        guestList = guests.filter(Q(name__icontains=searchParam) | Q(userid__icontains=searchParam))
+        guestList = GuestDAO.getUser(searchParam)
         context = {
             'guests': guestList,
             'searchParam': searchParam
@@ -30,10 +27,9 @@ def search_guest(request):
 
 
 def guest_detail(request, userid):
-    guest = Guest.objects.get(userid = userid)
+    guest = GuestDAO.getUser(userid)[0]
     context = {
-        'name': guest.name,
-        'id': guest.userid
+        'guest': guest
     }
     return render(request, 'guest/guest_detail.html', context)
 

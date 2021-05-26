@@ -8,7 +8,7 @@ from .models import Feedback
 
 
 def feedback_list(request):
-    feedbacks = Feedback.objects.all()
+    feedbacks = FeedbackDAO.getFeedbacks()
     context = {
             'feedbacks': feedbacks
         }
@@ -17,10 +17,12 @@ def feedback_list(request):
 
 
 def feedback_detail(request, id):
-    feedback = Feedback.objects.get(id = id)
+    feedback = FeedbackDAO.getFeedback(id)
     context = {
         'feedback': feedback
     }
+
+    return render(request, 'feedback/feedback_detail.html', context)
     
 
 def add_feedback(request):
