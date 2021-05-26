@@ -6,7 +6,7 @@
     </div>
     <div class="content-container">
         <h3>title: {{ feedback.title }}</h3>
-        {% if not feedback.anonimity %}
+        {% if not anonymous %}
             <h4>writer: {{ feedback.userid }}</h4>
         {% else %}
             <h4>writer: anonymous</h4>
