@@ -18,8 +18,13 @@ def feedback_list(request):
 
 def feedback_detail(request, feedbackid):
     feedback = FeedbackDAO.getFeedback(feedbackid)
+    if feedback.anonymity == 'open':
+        anonymous = False
+    else:
+        anonymous = True
     context = {
-        'feedback': feedback
+        'feedback': feedback,
+        'anonymous': anonymous
     }
 
     return render(request, 'feedback/feedback_detail.html', context)

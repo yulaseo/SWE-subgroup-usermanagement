@@ -1,15 +1,19 @@
-{% extends 'guest/base.html' %}
+{% extends 'feedback/base.html' %}
 
 {% block content %}
-    <div class="page-header">
-            <h1><center>Feedback Detail</center></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    <h1>{{ feedback.title }}</h1>
-                    <h2>{{ feedback.content }}<h2>
-                </div>
-            </div>
-        </div>     
+    <div class="page-subheader">
+        <h1>Feedback Detail</h1>
+    </div>
+    <div class="content-container">
+        <h3>title: {{ feedback.title }}</h3>
+        {% if not anonymous %}
+            <h4>writer: {{ feedback.userid }}</h4>
+        {% else %}
+            <h4>writer: anonymous</h4>
+        {% endif %}
+        <p>{{ feedback.create_date }}
+        <p>content:</p>
+        <p>{{ feedback.content }}</p>
+              
+    </div>     
 {% endblock %}

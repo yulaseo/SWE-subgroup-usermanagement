@@ -1,19 +1,15 @@
-{% extends 'guest/base.html' %}
+{% extends 'feedback/base.html' %}
 
 {% block content %}
-    <div class="page-header">
-            <h1><center>Feedback List</center></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-
-                    {% for feedback in feedbacks %}
-                        <a href="{% url 'feedback_detail' feedbackid=feedback.feedbackid %}">{{ feedback.title }}</a><span>{{ feedback.create_date }}</span>
-                        <br>
-                    {% endfor %}
-
-                </div>
-            </div>
-        </div>     
+    <div class="page-subheader">
+        <h1>Feedback List</h1>
+    </div>
+    <div class="content-container">
+        <div class="list">
+            {% for feedback in feedbacks %}
+                <h3><a href="{% url 'feedback_detail' feedbackid=feedback.feedbackid %}">{{ feedback.title }}</a>
+                <br><span>{{ feedback.create_date }}</span></h3><br>
+            {% endfor %}
+        </div>            
+    </div>     
 {% endblock %}
