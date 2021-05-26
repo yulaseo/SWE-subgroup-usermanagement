@@ -7,7 +7,7 @@ class Guest(models.Model):
     password = models.TextField(default='')
     email = models.TextField(default='')
     phone_number = models.IntegerField(default=0)
-    profile_image = models.ImageField(upload_to='images/', blank=True, null=True)
+    profile_image = models.ImageField(upload_to='images', blank=True, null=True)
     restricted_status = models.BooleanField(default=False)
     restricted_period = models.IntegerField(default=0)
 
