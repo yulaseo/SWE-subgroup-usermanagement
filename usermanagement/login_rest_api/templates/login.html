@@ -75,26 +75,30 @@
 </body>
 <script>
   const getToken = () => {
-    let returnValue = false;
-        $.ajax({
-            url: './get-token',
-            type: 'GET',
-            async: false,
-            data: {
-              'id': document.querySelector('#id').value,
-              'password': document.querySelector('#pw').value
-            },
-            success: function(data) {
-              data = JSON.parse(data);
-              if (data['token'] != undefined){
-                localStorage.setItem('token', data['token']);
-                location.href="../feedback/add";
-              }
-              else {
-                alert("Login Fail");
-              }
-            }
-        })
+    $.ajax({
+        url: './get-token',
+        type: 'GET',
+        async: false,
+        data: {
+          'id': document.querySelector('#id').value,
+          'password': document.querySelector('#pw').value
+        },
+        success: function(data) {
+          if (data === "NotExist"){
+            alert("Login Fail");
+            return false;
+          }
+          data = JSON.parse(data);
+          if(data['token'] === undefined){
+            alert("Login Fail");
+            return false;
+          }
+          localStorage.setItem('token', data['token']);
+          location.href="../feedback/add";
+        }, error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다. 
+              console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    })
   }
 </script>
 </html>

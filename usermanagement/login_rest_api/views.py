@@ -11,7 +11,10 @@ def login(request):
     
     
 def get_token(request):
-    obj = Guest.objects.get(userid=request.GET['id'])
+    try:
+        obj = Guest.objects.get(userid=request.GET['id'])
+    except:
+        return HttpResponse("NotExist")
     user_name = obj.username
     r = requests.post("http://localhost:8000/login/api-jwt-auth/", 
             data={
