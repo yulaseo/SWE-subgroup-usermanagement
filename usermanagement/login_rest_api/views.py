@@ -1,16 +1,21 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
-
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from guest.guestDAO import GuestDAO
 from guest.models import Guest
+from django.http import HttpResponse
+import requests
 
-class LoginView(APIView):
-    def post(self, request):
-        user = User.objects.create_user(username=request.data['id'], password=request.data['password'])
-        profile = models.Profile(user=user, nickname=request.data['nickname'])
 
-        user.save()
-        profile.save()
-
-        token = Token.objects.create(user=user)
-        return Response({"Token": token.key})
+def login(request):
+    return render(request, 'login.html')
+    
+    
+def get_token(request):
+    obj = Guest.objects.get(userid=request.GET['id'])
+    user_name = obj.username
+    r = requests.post("http://localhost:8000/login/api-jwt-auth/", 
+            data={
+                "username": user_name,
+                "password": request.GET['password']
+            })
+    return HttpResponse(r)
