@@ -5,7 +5,9 @@ from .feedbackDAO import FeedbackDAO
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from .models import Feedback
-
+import requests
+import jwt
+from django.conf import settings
 
 def feedback_list(request):
     feedbacks = FeedbackDAO.getFeedbacks()
@@ -39,14 +41,16 @@ def id_generate(request):
     return HttpResponse(new_id)
 
 
-def get_user_id(request):
-    return "USERID"
+def get_user_id(request, token):
+    decoded = jwt.decode(jwt=token, key=settings.SECRET_KEY, algorithms=['HS256'])
+    return decoded['user_id']
 
 
 def add_feedback_action(request):
     if request.method != "POST":
         return redirect('add_feedback')
     # Token verify
-    FeedbackDAO.save_feedback(request.POST['anonymity'], get_user_id(request), request.POST['title'], request.POST['content'], IdGen.generateID())
+    token = request.POST['token']
+    FeedbackDAO.save_feedback(request.POST['anonymity'], get_user_id(request, token), request.POST['title'], request.POST['content'], IdGen.generateID())
     messages.info(request, "The new feedback has been successfully sent.")
     return HttpResponseRedirect('add')
