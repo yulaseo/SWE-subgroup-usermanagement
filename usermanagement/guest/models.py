@@ -15,6 +15,7 @@ class Guest(AbstractUser):
     def __str__(self):
         return self.username
 
+# DANGEROUS
 @receiver(pre_save, sender=Guest)
 def password_hashing(instance, **kwargs):
     instance.password = make_password(instance.password)
