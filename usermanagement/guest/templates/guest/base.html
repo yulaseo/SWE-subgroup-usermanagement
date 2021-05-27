@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/guest.css' %}">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     </head>
 
     <body>
@@ -19,9 +19,18 @@
             <button class="menu" onclick="location.href='{% url 'search_guest' %}'">Search Guest</button>
             <button class="menu" onclick="location.href='{% url 'add_feedback' %}'">Write Feedback</button>
             <button class="menu" onclick="location.href='{% url 'feedback_list' %}'">View Feedback</button>
-            <button class="menu" onclick="location.href='{% url 'logout' %}'">Logout</button>
+            <button class="menu" onclick="logout()">Logout</button>
         </div>
         {% block content %}
         {% endblock %}
+
+        
+        <script>
+            function logout() {
+                if (localStorage.getItem('token') !== null) {
+                    localStorage.removeItem('token');
+                }
+            }
+        </script>
     </body>
 </html>

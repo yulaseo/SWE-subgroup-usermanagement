@@ -70,12 +70,12 @@
           console.log(data);
           if (data.hasOwnProperty('non_field_errors')) {
             alert("400 Bad Request");
-            location.href="../login/login";
+            location.href="../login";
           }
 
           if (data.hasOwnProperty('token') && data['token'][0] === "This field may not be blank."){
             alert("400 Bad Request");
-            location.href="../login/login";
+            location.href="../login";
           }
         }
     })

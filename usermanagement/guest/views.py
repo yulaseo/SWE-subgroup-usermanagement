@@ -8,11 +8,6 @@ from .guestDAO import GuestDAO
 from django.contrib import messages
 
 
-def logout(request):
-    auth.logout(request)
-    return redirect('login')
-
-
 def search_guest(request):
     searchParam = request.POST.get('searchParam', '')
     if searchParam:
