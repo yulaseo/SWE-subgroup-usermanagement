@@ -28,8 +28,3 @@ def authorization(request):
             "token": token_value
         })
     return HttpResponse(r)
-    
-
-def logout(request):
-    auth.logout(request)
-    return redirect('login')
