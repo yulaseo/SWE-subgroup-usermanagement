@@ -120,8 +120,14 @@
         },
         success: function(data) {
           data = JSON.parse(data);
-          console.log(data['token'][0]);
-          if (data['token'][0] === "This field may not be blank."){
+          console.log(data);
+          if (data.hasOwnProperty('non_field_errors')) {
+            alert("400 Bad Request");
+            location.href="../login/login";
+          }
+
+          if (data.hasOwnProperty('token') && data['token'][0] === "This field may not be blank."){
+            alert("400 Bad Request");
             location.href="../login/login";
           }
         }
