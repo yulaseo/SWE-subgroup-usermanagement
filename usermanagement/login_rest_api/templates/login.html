@@ -88,6 +88,7 @@
               data = JSON.parse(data);
               if (data['token'] != undefined){
                 localStorage.setItem('token', data['token']);
+                location.href="../feedback/add";
               }
               else {
                 alert("Login Fail");

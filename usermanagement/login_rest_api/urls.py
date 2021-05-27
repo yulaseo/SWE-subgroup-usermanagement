@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns = [
   path('login', views.login, name='login'),
-  path('get-token', views.get_token, name='login_action'),
+  path('get-token', views.get_token, name='get-token'),
+  path('verify-token', views.authorization, name='authorization'),
   url(r'^api-jwt-auth/$', obtain_jwt_token),
   url(r'^api-jwt-auth/refresh/$', refresh_jwt_token),
   url(r'^api-jwt-auth/verify/$', verify_jwt_token),

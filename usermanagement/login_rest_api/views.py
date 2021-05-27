@@ -19,3 +19,12 @@ def get_token(request):
                 "password": request.GET['password']
             })
     return HttpResponse(r)
+
+
+def authorization(request):
+    token_value = request.GET['token']
+    r = requests.post("http://localhost:8000/login/api-jwt-auth/verify/", 
+        data={
+            "token": token_value
+        })
+    return HttpResponse(r)

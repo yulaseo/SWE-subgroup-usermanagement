@@ -109,5 +109,23 @@
         })
         document.querySelector('#idInput').value = returnValue;
   }
+
+  window.onload = () => {
+    $.ajax({
+        url: '../login/verify-token',
+        type: 'GET',
+        async: false,
+        data: {
+          'token': localStorage.getItem('token')
+        },
+        success: function(data) {
+          data = JSON.parse(data);
+          console.log(data['token'][0]);
+          if (data['token'][0] === "This field may not be blank."){
+            location.href="../login/login";
+          }
+        }
+    })
+  }
 </script>
 </html>
