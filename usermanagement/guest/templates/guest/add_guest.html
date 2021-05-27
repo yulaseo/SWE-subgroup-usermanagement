@@ -61,7 +61,7 @@
       {% endfor %}
     {% endif %}
     <div class="form-container">
-      <form action="./addAction" method="POST">
+      <form action="./addAction" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
           <span class="form-title">ID: </span>

@@ -46,6 +46,6 @@ def id_generate(request):
 def add_guest_action(request):
     if request.method != "POST" or not NewComerChecker.check(request.POST):
         return redirect('add_guest')
-    GuestDAO.addUser(IdGen.generateID(), request.POST)
+    GuestDAO.addUser(IdGen.generateID(), request.POST, request.FILES['profile'])
     messages.info(request, "The new guest has been successfully registered.")
     return HttpResponseRedirect('add')
