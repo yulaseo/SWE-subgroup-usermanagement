@@ -20,8 +20,8 @@
                 <h2>Guest '{{ searchParam }}' Not Found!<h2>
             {% else %}
                 {% for guest in guests.all %}
-                    <h3><a href="{% url 'guest_detail' userid=guest.userid %}">{{ guest.name }}</a>
-                    <br><span>{{ guest.userid }}</span></h3><br>
+                    <button class="item" onclick="location.href='{% url 'guest_detail' userid=guest.userid %}'">{{ guest.username }}
+                    <br><span class="subitem">{{ guest.userid }}</span></button><br><br>
                 {% endfor %}
             {% endif %}
         </div>

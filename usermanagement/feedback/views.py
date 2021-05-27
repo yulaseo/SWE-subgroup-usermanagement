@@ -20,7 +20,7 @@ def feedback_list(request):
 
 def feedback_detail(request, feedbackid):
     feedback = FeedbackDAO.getFeedback(feedbackid)
-    if feedback.anonymity == 'open':
+    if feedback.anonimity == 'open':
         anonymous = False
     else:
         anonymous = True

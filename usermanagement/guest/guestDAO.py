@@ -9,6 +9,8 @@ class GuestDAO:
 
   def getUser(searchParam):
     guests = Guest.objects.all()
-    guestList = guests.filter(Q(name__icontains=searchParam) | Q(userid__icontains=searchParam))
+    guests = guests.exclude(userid=2100000000)
+    
+    guestList = guests.filter(Q(username__icontains=searchParam) | Q(userid__icontains=searchParam))
     
     return guestList

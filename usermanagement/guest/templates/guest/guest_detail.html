@@ -10,10 +10,10 @@
                 <img class="profile" src="{{ guest.profile_image.url }}">
             {% endif %}
             <br><br>
-            <span class="index">Name  </span><span class="info">{{ guest.name }}</span><br><br>
+            <span class="index">Name  </span><span class="info">{{ guest.username }}</span><br><br>
             <span class="index">ID  </span><span class="info">{{ guest.userid }}</span><br><br>
             <span class="index">E-mail  </span><span class="info">{{ guest.email }}</span><br><br>
-            <span class="index">Phone Number  </span><span class="info">{{ guest.phone_number }}</span><br><br>
+            <span class="index">Phone Number  </span><span class="info">0{{ guest.phone_number }}</span><br><br>
             <span class="index">Restricted Status  </span>
             {% if guest.restricted_status %}
                 <span class="info">O</span><br><br>
