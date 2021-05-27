@@ -46,6 +46,7 @@ def get_user_id(request):
 def add_feedback_action(request):
     if request.method != "POST":
         return redirect('add_feedback')
+    # Token verify
     FeedbackDAO.save_feedback(request.POST['anonymity'], get_user_id(request), request.POST['title'], request.POST['content'], IdGen.generateID())
     messages.info(request, "The new feedback has been successfully sent.")
     return HttpResponseRedirect('add')
