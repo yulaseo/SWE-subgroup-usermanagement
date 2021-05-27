@@ -5,6 +5,7 @@ from .feedbackDAO import FeedbackDAO
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from .models import Feedback
+from guest.models import Guest
 import requests
 import jwt
 from django.conf import settings
@@ -43,7 +44,10 @@ def id_generate(request):
 
 def get_user_id(request, token):
     decoded = jwt.decode(jwt=token, key=settings.SECRET_KEY, algorithms=['HS256'])
-    return decoded['user_id']
+    user_name = decoded['username']
+    user_email = decoded['email']
+    obj = Guest.objects.get(username=user_name, email=user_email)
+    return obj.userid
 
 
 def add_feedback_action(request):
